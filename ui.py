@@ -124,11 +124,20 @@ if st.session_state['selected_page'] == 'Analysis':
             st.text(f"📍 {addr}")
             st.dataframe(df[['fuel_type','price','isAdBlueAvailable']])
         with column2:
-            if address_input is not '':
+            if address_input != '':
                 data = pd.read_csv('data/overall.csv')
-                lat_long = data[data['address']== address_input][['latitude','longitude']][0:1]  # Example: get one row
+                list_address = []
+                for i in data['address']:
+                    if i in list_address:
+                        pass
+                    else:
+                        list_address.append(i)
+                if address_input not in list_address:
+                    st.warning('Please enter valid address.')
+                else:
+                    lat_long = data[data['address']== address_input][['latitude','longitude']][0:1]  # Example: get one row
                 
-                st.map(lat_long)
+                    st.map(lat_long)
                 break
 
                 
