@@ -3,7 +3,6 @@ import pandas as pd
 import datetime
 import time
 import os
-import paho.mqtt.client as mqtt
 import json
 import warnings
 import sys
